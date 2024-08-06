@@ -19,23 +19,24 @@
             <thead>
                 <tr>
                     <th>Nombre</th>
-                    <th>Descripción</th>
+                    <th>Apellido</th>
                     <th>Cargo</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($empleados as $empleados)
+                @foreach($empleados as $empleado)
                     <tr>
-                        <td>{{ $empleados->nombre }}</td>
-                        <td>{{ $empleados->descripcion }}</td>
-                        <td>{{ $empleados->cargo }}</td>
+                        <td>{{ $empleado->nombre }}</td>
+                        <td>{{ $empleado->apellido }}</td>
+                        <td>{{ $empleado->cargo }}</td>
                         <td>
-                            <form action="{{ route('empleado.destroy', $empleados->id) }}" method="post">
+                            <a href="{{ route('empleado.edit', $empleado->id) }}" class="btn btn-warning">Editar</a>
+                            <form action="{{ route('empleado.destroy', $empleado->id) }}" method="post" style="display:inline-block;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Eliminar</button>
                             </form>
-                            <a href="{{ route('empleado.edit', $empleados->id) }}" class="btn btn-warning">Editar</a>
                         </td>
                     </tr>
                 @endforeach
